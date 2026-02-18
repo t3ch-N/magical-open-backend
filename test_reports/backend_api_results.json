@@ -1,0 +1,204 @@
+{
+  "timestamp": "2026-01-19T14:57:28.832687",
+  "total_tests": 24,
+  "passed_tests": 21,
+  "failed_tests": 3,
+  "success_rate": 87.5,
+  "results": {
+    "public_endpoints": [
+      {
+        "test": "API Root",
+        "endpoint": "/",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Health Check",
+        "endpoint": "/health",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Submit Enquiry",
+        "endpoint": "/enquiries",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Submit Contact Form",
+        "endpoint": "/contact",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      }
+    ],
+    "auth_endpoints": [
+      {
+        "test": "Image Upload (No Auth)",
+        "endpoint": "/admin/upload",
+        "success": false,
+        "status_code": 422,
+        "error": null
+      },
+      {
+        "test": "Policy Upload (No Auth)",
+        "endpoint": "/admin/policies/upload",
+        "success": false,
+        "status_code": 422,
+        "error": null
+      },
+      {
+        "test": "Admin Policies List (No Auth)",
+        "endpoint": "/admin/policies",
+        "success": true,
+        "status_code": 401,
+        "error": null
+      },
+      {
+        "test": "Admin Uploads List (No Auth)",
+        "endpoint": "/admin/uploads",
+        "success": true,
+        "status_code": 401,
+        "error": null
+      },
+      {
+        "test": "Get Current User (No Auth)",
+        "endpoint": "/auth/me",
+        "success": true,
+        "status_code": 401,
+        "error": null
+      },
+      {
+        "test": "Request Role (No Auth)",
+        "endpoint": "/auth/request-role",
+        "success": false,
+        "status_code": 422,
+        "error": null
+      },
+      {
+        "test": "Get Users (Admin) (No Auth)",
+        "endpoint": "/admin/users",
+        "success": true,
+        "status_code": 401,
+        "error": null
+      },
+      {
+        "test": "Get Registration Requests (No Auth)",
+        "endpoint": "/admin/registration-requests",
+        "success": true,
+        "status_code": 401,
+        "error": null
+      }
+    ],
+    "admin_endpoints": [],
+    "data_endpoints": [
+      {
+        "test": "Tournament Info",
+        "endpoint": "/tournament/info",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Tournament Schedule",
+        "endpoint": "/tournament/schedule",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Past Winners",
+        "endpoint": "/tournament/past-winners",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get Players",
+        "endpoint": "/players",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get Leaderboard",
+        "endpoint": "/leaderboard",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get Single Player",
+        "endpoint": "/players/player_001",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get News",
+        "endpoint": "/news",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get News (Filtered)",
+        "endpoint": "/news?status=published&limit=5",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get Gallery",
+        "endpoint": "/gallery",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get Ticket Packages",
+        "endpoint": "/tickets/packages",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get Policies",
+        "endpoint": "/policies",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      },
+      {
+        "test": "Get Policies (Filtered)",
+        "endpoint": "/policies?category=governance",
+        "success": true,
+        "status_code": 200,
+        "error": null
+      }
+    ]
+  },
+  "failed_details": [
+    {
+      "test": "Image Upload (No Auth)",
+      "endpoint": "/admin/upload",
+      "status_code": 422,
+      "error": null
+    },
+    {
+      "test": "Policy Upload (No Auth)",
+      "endpoint": "/admin/policies/upload",
+      "status_code": 422,
+      "error": null
+    },
+    {
+      "test": "Request Role (No Auth)",
+      "endpoint": "/auth/request-role",
+      "status_code": 422,
+      "error": null
+    }
+  ]
+}

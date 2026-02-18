@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Barlow+Condensed:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Magical Kenya Open Official Brand Colors */
+        --background: 240 7% 95%; /* Open White #F2F1F2 */
+        --foreground: 150 5% 22%; /* Kenya Black #373A36 */
+        
+        --card: 0 0% 100%;
+        --card-foreground: 150 5% 22%;
+        
+        --popover: 0 0% 100%;
+        --popover-foreground: 150 5% 22%;
+        
+        --primary: 348 100% 42%; /* Magical Red #D50032 */
+        --primary-foreground: 0 0% 100%;
+        
+        --secondary: 150 5% 22%; /* Kenya Black #373A36 */
+        --secondary-foreground: 0 0% 100%;
+        
+        --accent: 348 100% 42%; /* Magical Red for accents */
+        --accent-foreground: 0 0% 100%;
+        
+        --muted: 240 7% 92%;
+        --muted-foreground: 150 5% 40%;
+        
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+        
+        --border: 240 7% 85%;
+        --input: 240 7% 85%;
+        --ring: 348 100% 42%;
+        
+        --chart-1: 348 100% 42%;
+        --chart-2: 150 5% 22%;
+        --chart-3: 43 65% 52%;
+        --chart-4: 220 9% 46%;
+        --chart-5: 0 0% 10%;
+        
+        --radius: 0.25rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        @apply bg-background text-foreground antialiased;
+        font-family: 'DM Sans', sans-serif;
+        background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+        background-size: 200px;
+        background-repeat: repeat;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+    }
+    
+    /* Override for numbers/stats - use Barlow Condensed */
+    .font-score, .font-stats {
+        font-family: 'Barlow Condensed', sans-serif;
+    }
+    
+    .font-heading {
+        font-family: 'Playfair Display', serif;
+    }
+    
+    .font-subheading {
+        font-family: 'Barlow Condensed', sans-serif;
+    }
+    
+    .font-body {
+        font-family: 'DM Sans', sans-serif;
+    }
+    
+    .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+    }
+}
+
+@layer components {
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: hsl(var(--muted));
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: hsl(var(--primary));
+        border-radius: 0;
+    }
+    
+    /* Gradient backgrounds - Updated to MKO brand */
+    .gradient-hero {
+        background: linear-gradient(to bottom right, #373A36, #1a1d1a);
+    }
+    
+    .gradient-magical {
+        background: linear-gradient(135deg, #D50032 0%, #a30028 100%);
+    }
+    
+    .gradient-gold {
+        background: linear-gradient(to right, #D50032, #ff1a4a, #D50032);
+    }
+    
+    /* Glass effect */
+    .glass {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+    
+    .glass-dark {
+        background: rgba(55, 58, 54, 0.95);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+    
+    /* Container */
+    .container-custom {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+    
+    /* Section spacing - Improved rhythm */
+    .section-spacing {
+        @apply py-20 md:py-28 lg:py-36;
+    }
+    
+    .section-spacing-sm {
+        @apply py-12 md:py-16 lg:py-20;
+    }
+    
+    /* Animation utilities */
+    .hover-lift {
+        @apply transition-transform duration-300 hover:-translate-y-1;
+    }
+    
+    .animate-fade-in {
+        animation: fadeIn 0.7s ease-out forwards;
+    }
+    
+    .animate-slide-up {
+        animation: slideUp 0.7s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { 
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Button variants - MKO Brand */
+    .btn-primary {
+        @apply bg-primary text-white hover:bg-primary/90 h-14 px-10 uppercase tracking-widest font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-xl;
+    }
+    
+    .btn-secondary {
+        @apply bg-secondary text-white hover:bg-secondary/90 h-14 px-10 uppercase tracking-widest font-bold text-sm transition-all duration-300;
+    }
+    
+    .btn-outline {
+        @apply border-2 border-primary text-primary hover:bg-primary hover:text-white h-14 px-10 uppercase tracking-widest font-bold text-sm transition-all duration-300;
+    }
+    
+    /* CTA Button - High visibility */
+    .btn-cta {
+        @apply bg-[#D50032] text-white hover:bg-[#a30028] h-16 px-12 uppercase tracking-widest font-bold text-base transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105;
+    }
+    
+    /* Card styles */
+    .card-default {
+        @apply bg-card border border-border/30 shadow-md hover:shadow-lg transition-all duration-300 rounded;
+    }
+    
+    .card-feature {
+        @apply relative overflow-hidden bg-secondary text-white p-8 rounded;
+    }
+    
+    /* Live badge - MKO brand */
+    .live-badge {
+        @apply inline-flex items-center gap-2 bg-[#D50032] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider rounded;
+    }
+    
+    .live-badge::before {
+        content: '';
+        @apply w-2 h-2 rounded-full bg-white animate-pulse;
+    }
+    
+    /* Flag icons - using country codes */
+    .flag-icon {
+        @apply w-6 h-4 inline-block bg-cover bg-center;
+    }
+    
+    /* Typography System */
+    .text-h1 {
+        @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+    }
+    
+    .text-h2 {
+        @apply text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight;
+    }
+    
+    .text-h3 {
+        @apply text-2xl sm:text-3xl font-semibold leading-snug;
+    }
+    
+    .text-h4 {
+        @apply text-xl sm:text-2xl font-semibold leading-snug;
+    }
+    
+    .text-subhead {
+        @apply text-lg sm:text-xl font-medium leading-relaxed;
+    }
+    
+    .text-body {
+        @apply text-base leading-relaxed;
+    }
+    
+    .text-body-sm {
+        @apply text-sm leading-relaxed;
+    }
+    
+    .text-caption {
+        @apply text-xs uppercase tracking-wider font-semibold;
+    }
+    
+    /* Image aspect ratios */
+    .aspect-ticket {
+        aspect-ratio: 16/9;
+    }
+    
+    .aspect-hero {
+        aspect-ratio: 21/9;
+    }
+    
+    .aspect-card {
+        aspect-ratio: 4/3;
+    }
+    
+    /* Hero image positioning */
+    .hero-image {
+        @apply object-cover object-top w-full h-full;
+    }
+    
+    /* Mobile tap targets */
+    .tap-target {
+        @apply min-h-[48px] min-w-[48px];
+    }
+}
+
+@layer utilities {
+    /* Text balance for headings */
+    .text-balance {
+        text-wrap: balance;
+    }
+    
+    /* Hide scrollbar but allow scroll */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+/* Debug wrapper fix */
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}

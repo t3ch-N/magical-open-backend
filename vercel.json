@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "projects": [
+    {
+      "src": "frontend",  
+      "name": "frontend",
+      "framework": "nextjs"
+    },
+    {
+      "src": "backend/server.py",  
+      "name": "backend",
+      "framework": "other"
+    }
+  ]
+}

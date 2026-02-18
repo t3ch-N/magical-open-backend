@@ -1,0 +1,152 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "Magical Kenya Open Digital Platform",
+      "persona": "E1: The Anti-AI Designer",
+      "vibe": "Safari Luxury meets Professional Sport",
+      "principles": [
+        "Fusion: Safari Warmth + Swiss Precision",
+        "Emotion: Pride, Excitement, Elegance",
+        "Content: Story-driven, not just data-driven",
+        "Contrast: Deep Greens vs. Hot Reds vs. Bone White"
+      ]
+    },
+    "theme": {
+      "mode": "light",
+      "strategy": "Warm Luxury (Bone/Sand background instead of sterile white)",
+      "colors": {
+        "primary": {
+          "DEFAULT": "#1a472a",
+          "foreground": "#ffffff",
+          "description": "Deep Kenya Forest Green - Use for primary actions, headers, active states"
+        },
+        "secondary": {
+          "DEFAULT": "#e31937",
+          "foreground": "#ffffff",
+          "description": "Magical Red - Use for 'Magical' branding, urgent CTAs, live badges"
+        },
+        "accent": {
+          "DEFAULT": "#d4af37",
+          "foreground": "#1a1a1a",
+          "description": "Safari Gold - Use for premium highlights, winners, trophies"
+        },
+        "background": "#fdfbf7",
+        "foreground": "#1a1a1a",
+        "card": "#ffffff",
+        "card_foreground": "#1a1a1a",
+        "muted": "#f3f4f6",
+        "muted_foreground": "#6b7280",
+        "border": "#e5e7eb",
+        "input": "#e5e7eb",
+        "ring": "#1a472a"
+      },
+      "gradients": {
+        "hero": "linear-gradient(to bottom right, #1a472a, #0f2b19)",
+        "magical": "linear-gradient(135deg, #e31937 0%, #b91c1c 100%)",
+        "gold": "linear-gradient(to right, #d4af37, #fcd34d, #d4af37)"
+      }
+    },
+    "typography": {
+      "font_family": {
+        "heading": "Playfair Display, serif",
+        "subheading": "Barlow Condensed, sans-serif",
+        "body": "DM Sans, sans-serif",
+        "mono": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-6xl md:text-7xl font-bold tracking-tight leading-none",
+        "h2": "text-4xl md:text-5xl font-bold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-semibold",
+        "body_lg": "text-lg md:text-xl leading-relaxed",
+        "body": "text-base leading-relaxed",
+        "caption": "text-sm font-medium tracking-wide uppercase"
+      }
+    },
+    "layout": {
+      "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+      "spacing": {
+        "section": "py-20 md:py-32",
+        "element": "gap-8 md:gap-12"
+      },
+      "grid_modes": {
+        "tetris": "grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 auto-rows-[minmax(200px,auto)]",
+        "bento": "grid grid-cols-1 md:grid-cols-3 gap-6",
+        "dashboard": "grid grid-cols-1 md:grid-cols-4 gap-6"
+      }
+    },
+    "components": {
+      "buttons": {
+        "primary": "bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 rounded-none uppercase tracking-widest font-bold text-sm transition-all duration-300 hover:tracking-[0.2em]",
+        "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 px-8 rounded-none uppercase tracking-widest font-bold text-sm",
+        "outline": "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground h-12 px-8 rounded-none uppercase tracking-widest font-bold text-sm"
+      },
+      "cards": {
+        "default": "bg-card border border-border/40 shadow-sm hover:shadow-md transition-all duration-300 rounded-none",
+        "glass": "bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl rounded-none",
+        "feature": "group relative overflow-hidden bg-primary text-primary-foreground p-8 rounded-none"
+      },
+      "inputs": {
+        "default": "h-12 rounded-none border-border focus:ring-2 focus:ring-primary/20 bg-white/50 backdrop-blur-sm"
+      }
+    },
+    "visual_enhancers": {
+      "texture": "url('https://grainy-gradients.vercel.app/noise.svg')",
+      "radius": "rounded-none",
+      "shadows": {
+        "soft": "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+        "hard": "4px 4px 0px 0px rgba(0,0,0,1)"
+      },
+      "animations": {
+        "hover_lift": "hover:-translate-y-1 transition-transform duration-300",
+        "fade_in": "animate-in fade-in duration-700 slide-in-from-bottom-4"
+      }
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": "https://images.pexels.com/photos/9207751/pexels-photo-9207751.jpeg",
+      "golf_course": "https://images.pexels.com/photos/6256827/pexels-photo-6256827.jpeg",
+      "safari_landscape": "https://images.pexels.com/photos/30752232/pexels-photo-30752232.jpeg",
+      "spectators": "https://images.unsplash.com/photo-1766206096924-c78074981e84?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxnb2xmJTIwdG91cm5hbWVudCUyMHNwZWN0YXRvcnMlMjBjcm93ZHxlbnwwfHx8fDE3Njg4MzAyNjh8MA&ixlib=rb-4.1.0&q=85",
+      "logo_placeholder": "https://placehold.co/200x80/1a472a/ffffff?text=MAGICAL+KENYA+OPEN",
+      "sponsor_placeholder": "https://placehold.co/150x60/e5e7eb/1a1a1a?text=Sponsor"
+    },
+    "icons": "lucide-react"
+  },
+  "implementation_steps": [
+    {
+      "step": 1,
+      "description": "Setup Global Styles & Fonts",
+      "action": "Update index.css with new variables and import fonts (Playfair Display, Barlow Condensed, DM Sans). Add noise texture to body."
+    },
+    {
+      "step": 2,
+      "description": "Configure Tailwind",
+      "action": "Update tailwind.config.js with the 'Magical' color palette and font families."
+    },
+    {
+      "step": 3,
+      "description": "Build Layout Shell",
+      "action": "Create the MainLayout with sticky glass header and 'fat' footer. Implement the 'Tetris' grid system."
+    },
+    {
+      "step": 4,
+      "description": "Develop Core Components",
+      "action": "Customize Shadcn components (Button, Card, Input) to match the 'Anti-AI' rounded-none, high-spacing aesthetic."
+    },
+    {
+      "step": 5,
+      "description": "Construct Pages",
+      "action": "Build Home, Leaderboard, and Registration pages using the defined grid modes and components."
+    }
+  ],
+  "universal_guidelines": [
+    "DO NOT use default Shadcn radius. Force 'rounded-none' or 'rounded-sm' for a sharp, premium feel.",
+    "DO NOT center text by default. Use left alignment for a strong editorial look.",
+    "ALWAYS add the noise texture overlay to the body background.",
+    "Use 'Playfair Display' for all H1/H2 headings to establish the brand voice.",
+    "Ensure all interactive elements have 'data-testid' attributes.",
+    "Use 'sonner' for all toast notifications.",
+    "For the Leaderboard, use a dense table layout but with 'Barlow Condensed' fonts for numbers to make it look like a sport scoreboard."
+  ]
+}

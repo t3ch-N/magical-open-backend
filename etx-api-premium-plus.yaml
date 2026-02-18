@@ -1,0 +1,4488 @@
+openapi: 3.0.1
+info:
+  title: ETX API Premium Plus
+  version: '1.0'
+servers:
+  - url: https://etx.europeantour.com/premplus
+paths:
+  '/event/categories/{EventId}':
+    get:
+      tags:
+        - Event
+      summary: Event - Categories
+      description: Event - Categories
+      operationId: Event-Categories
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCategoryTx'
+              example:
+                EventId: 0
+                Categories:
+                  - Name: string
+                    Description: string
+                    SortOrder: 0
+  '/event/courses/{EventId}':
+    get:
+      tags:
+        - Event
+      summary: Event - Courses
+      description: Event - Courses
+      operationId: Event-Courses
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCourseBothTx'
+              example:
+                EventId: 0
+                Courses:
+                  - CourseId: 0
+                    CourseNo: 0
+                    Course: string
+                    Venue: string
+                    City: string
+                    CountryCode: string
+                    CountryCodeISO3: string
+                    Country: string
+                    Holes:
+                      - HoleNo: 0
+                        Par: 0
+                        DistanceMetre: 0
+                        DistanceYard: 0
+                        OfficialDrive: true
+  '/event/entrylist/{EventId}':
+    get:
+      tags:
+        - Event
+      summary: Event - Entry List
+      description: Event - Entry List
+      operationId: Event-Entry-List
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryListTx'
+              example:
+                EventId: 0
+                Categories:
+                  - Category: string
+                    CategoryDescription: string
+                    SortOrder: 0
+                    Players:
+                      - PlayerId: 0
+                        FirstName: string
+                        LastName: string
+                        CountryCode: string
+                        CategoryRank: 0
+                        AboveCutOff: true
+                        CutOffRank: 0
+                        CountryCodeISO3: string
+                        Gender: string
+                        IsAmateur: true
+  '/event/exchangerate/{EventId}':
+    get:
+      tags:
+        - Event
+      summary: Event - Exchange Rates
+      description: Event - Exchange Rates
+      operationId: Event-Exchange-Rates
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeRateTx'
+              example:
+                EventId: 0
+                Currencies:
+                  - Currency: string
+                    Rate: 0
+  '/event/history/{EventId}':
+    get:
+      tags:
+        - Event
+      summary: Event - History
+      description: Event - History
+      operationId: Event-History
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventHistoryTx'
+              example:
+                - EventId: 0
+                  Name: string
+                  Status: string
+                  StartDate: string
+                  EndDate: string
+                  CountryCode: string
+                  CountryCodeISO3: string
+                  Country: string
+                  TournamentId: 0
+                  TournamentName: string
+                  NoOfRounds: 0
+                  PrizeCurrencyCode: string
+                  PrizeMoney: 0
+                  Points: 0
+                  IsOrderOfMerit: true
+                  IsMajor: true
+                  IsFlagship: true
+                  IsWGC: true
+                  IsMatchPlay: true
+                  FieldSize: 0
+                  CutValue: 0
+                  CutRound: 0
+                  IsDeleted: true
+  '/event/schedule/{TourId}/{Year}':
+    get:
+      tags:
+        - Event
+      summary: Event - Schedule
+      description: Event - Schedule
+      operationId: Events-Schedule
+      parameters:
+        - name: TourId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: Year
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventScheduleTx'
+              example:
+                - EventId: 0
+                  Name: string
+                  Status: string
+                  StartDate: string
+                  EndDate: string
+                  CountryCode: string
+                  CountryCodeISO3: string
+                  Country: string
+                  TournamentId: 0
+                  TournamentName: string
+                  NoOfRounds: 0
+                  PrizeCurrencyCode: string
+                  PrizeCurrencyCodeISO: string
+                  PrizeMoney: 0
+                  Points: 0
+                  IsOrderOfMerit: true
+                  GenerateStats: true
+                  IsMajor: true
+                  IsFlagship: true
+                  IsWGC: true
+                  IsMatchPlay: true
+                  FieldSize: 0
+                  CutValue: 0
+                  CutRound: 0
+                  IsDeleted: true
+                  ShotDataSource: string
+                  IsRolex: true
+  '/event/status/{EventId}':
+    get:
+      tags:
+        - Event
+      summary: Event - Status
+      description: Event - Status
+      operationId: Event-Status
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventStatus_Result'
+              example:
+                - EventId: 0
+                  Name: string
+                  StatusId: 0
+                  Status: string
+                  NoOfRounds: 0
+                  CurrentRound: 0
+                  RoundStatusId: 0
+                  RoundStatus: string
+                  LastUpdated: string
+  '/event/teetimes/{EventId}/{RoundNo}':
+    get:
+      tags:
+        - Event
+      summary: Event - Tee Times
+      description: Event - Tee Times
+      operationId: Event-Tee-Times
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: RoundNo
+          in: path
+          description: Round Number. e.g. 1
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeeTimesTx'
+              example:
+                EventId: 0
+                Rounds:
+                  - RoundNo: 0
+                    Courses:
+                      - CourseId: 0
+                        Course: string
+                        Matches:
+                          - Match: 0
+                            Tee: 0
+                            TeeTime: string
+                            Players:
+                              - PlayerId: 0
+                                FirstName: string
+                                LastName: string
+                                MatchOrder: 0
+  '/event/withdrawals/{EventId}':
+    get:
+      tags:
+        - Event
+      summary: Event - Withdrawals
+      description: Event - Withdrawals
+      operationId: Event-Withdrawals
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawalsTx'
+              example:
+                EventId: 0
+                Categories:
+                  - Category: string
+                    CategoryDescription: string
+                    SortOrder: 0
+                    Players:
+                      - PlayerId: 0
+                        FirstName: string
+                        LastName: string
+                        IsAmateur: true
+                        CountryCode: string
+                        CountryCodeISO3: string
+                        CategoryRank: 0
+                        AboveCutOff: true
+                        CutOffRank: 0
+  '/inplay/holebyhole/{EventId}/{RoundNo}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Hole By Hole
+      description: In Play - Hole By Hole
+      operationId: Event-Scorecard-Hole-by-Hole
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: RoundNo
+          in: path
+          description: Round Number e.g. 1
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HoleByHoleTx'
+              example:
+                EventId: 0
+                Players:
+                  - PlayerId: 0
+                    Rounds:
+                      - RoundNo: 0
+                        CourseId: 0
+                        CourseNo: 0
+                        ScorecardVerified: true
+                        StatsGenerated: true
+                        Holes:
+                          - HoleNo: 0
+                            HoleOrder: 0
+                            Strokes: 0
+                            ScoreToPar: 0
+                            Fairway: 0
+                            Bunkers: 0
+                            Putts: 0
+                            Drive: 0
+                            DriverUsed: true
+                            OfficialDrive: true
+                            GreenInRegulation: 0
+                            SandSave: 0
+                            Scramble: 0
+                            PossibleFairway: 0
+                            DrivingAccuracy: 0
+  '/inplay/leaderboard/{EventId}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Leaderboard
+      description: In Play - Leaderboard
+      operationId: Event-Leaderboard
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardTx'
+              example:
+                EventId: 0
+                Name: string
+                CutValue: 0
+                Players:
+                  - PlayerId: 0
+                    FirstName: string
+                    LastName: string
+                    Position: 0
+                    PositionMoved: 0
+                    PositionDesc: string
+                    SortOrder: 0
+                    IsTie: true
+                    MissedCut: true
+                    Euros: 0
+                    Points: 0
+                    RoundsPlayed: 0
+                    Strokes: 0
+                    ScoreToPar: 0
+                    LastUpdated: string
+                    CountryCode: string
+                    CountryCodeISO3: string
+                    HolesPlayed: 0
+                    Rounds:
+                      - RoundNo: 0
+                        Strokes: 0
+                        ScoreToPar: 0
+                        HolesPlayed: 0
+                        ScorecardVerified: true
+                        StatsGenerated: true
+  '/inplay/playoff/{EventId}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Playoff
+      description: In Play - Playoff
+      operationId: Event-Playoff
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayoffTx'
+              example:
+                EventId: 0
+                CourseNo: 0
+                Type: string
+                PlayoffPlayers:
+                  - PlayerId: 0
+                    SortOrder: 0
+                    Result: string
+                    ScoreToPar: 0
+                    PlayoffHoles:
+                      - HoleOrder: 0
+                        HoleNo: 0
+                        HolePar: 0
+                        HoleStrokes: string
+                        HoleScoreToPar: 0
+  '/inplay/scorecard/{EventId}/{PlayerId}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Scorecard (Detailed)
+      description: In Play - Scorecard (Detailed)
+      operationId: Scorecard-Hole-by-Hole
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: PlayerId
+          in: path
+          description: European Tour Player ID. e.g. 34024
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScorecardHoleDetailedTx'
+              example:
+                EventId: 0
+                PlayerId: 0
+                Rounds:
+                  - RoundNo: 0
+                    CourseId: 0
+                    CourseNo: 0
+                    ScorecardVerified: true
+                    StatsGenerated: true
+                    Holes:
+                      - HoleNo: 0
+                        HoleOrder: 0
+                        Strokes: 0
+                        ScoreToPar: 0
+                        Fairway: 0
+                        Bunkers: 0
+                        Putts: 0
+                        Drive: 0
+                        DriverUsed: true
+                        OfficialDrive: true
+                        GreenInRegulation: 0
+                        SandSave: 0
+                        Scramble: 0
+                        PossibleFairway: 0
+                        DrivingAccuracy: 0
+  '/inplay/shotdata/{EventId}/{PlayerId}/{RoundNo}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Shot Data
+      description: In Play - Shot Data
+      operationId: Shot-Data-by-Event-Player-and-Round
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: PlayerId
+          in: path
+          description: European Tour Player ID. e.g. 34024
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: RoundNo
+          in: path
+          description: Round Number e.g. 1
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShotDataTx'
+              example:
+                EventId: 0
+                PlayerId: 0
+                RoundNo: 0
+                CourseNo: 0
+                Holes:
+                  - HoleNo: 0
+                    Shots:
+                      - ShotNo: 0
+                        ShotIndex: 0
+                        ShotType: string
+                        ProvisionalIndex: 0
+                        DropType: string
+                        PenaltyType: string
+                        ShotData: true
+                        Club: string
+                        LieBefore: string
+                        LieAfter: string
+                        DistanceBeforeInch: 0
+                        DistanceAfterInch: 0
+                        Distance: 0
+                        Coordinates:
+                          Ball:
+                            Latitude: 0
+                            Longitude: 0
+                          Tee:
+                            Latitude: 0
+                            Longitude: 0
+                          Pin:
+                            Latitude: 0
+                            Longitude: 0
+                        Timestamp: string
+  '/inplay/shotdata/{EventId}/{RoundNo}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Shot Data Availability
+      description: In Play - Shot Data Availability
+      operationId: Shot-Data-Availability-by-Event-and-Round
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: RoundNo
+          in: path
+          description: Round Number e.g. 1
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShotDataAvailabilityTx'
+              example:
+                EventId: 0
+                RoundNo: 0
+                ShotDataAvailability:
+                  - PlayerId: 0
+                    ScoresUploaded: true
+                    LastUpdated: string
+  '/player/details/{PlayerId}':
+    get:
+      tags:
+        - Player
+      summary: Player - Details
+      description: Player - Details
+      operationId: Player-Details
+      parameters:
+        - name: PlayerId
+          in: path
+          description: European Tour Player ID. e.g. 34024
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerBioTx'
+              example:
+                PlayerId: 0
+                FirstName: string
+                LastName: string
+                CountryCode: string
+                CountryCodeISO3: string
+                Gender: string
+                DateOfBirth: string
+                IsPro: true
+                Interests: string
+                HeightCm: 0
+                HeightFt: string
+                Birthplace: string
+  '/player/history/{PlayerId}':
+    get:
+      tags:
+        - Player
+      summary: Player - History
+      description: Player - History
+      operationId: Player-History
+      parameters:
+        - name: PlayerId
+          in: path
+          description: European Tour Player ID. e.g. 34024
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerEventsTx'
+              example:
+                PlayerId: 0
+                Events:
+                  - EventId: 0
+                    Name: string
+                    TourId: 0
+                    Tour: string
+                    Year: 0
+                    Position: string
+                    IsTie: true
+                    OfficialEvent: true
+  '/player/{PageNo}/{PageSize}':
+    get:
+      tags:
+        - Player
+      summary: Player - Listing
+      description: Player - Listing
+      operationId: Players-Lookup
+      parameters:
+        - name: PageNo
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerLookupTx'
+              example:
+                Players:
+                  - CountryCode: string
+                    CountryCodeISO3: string
+                    Gender: string
+                    DateOfBirth: string
+                    PlayerId: 0
+                    FirstName: string
+                    LastName: string
+  '/player/{PageNo}/{PageSize}/{LastUpdated}':
+    get:
+      tags:
+        - Player
+      summary: Player - Listing By Date
+      description: Player - Listing By Date
+      operationId: Players-Lookup-LastUpdated
+      parameters:
+        - name: PageNo
+          in: path
+          description: Page Number
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: path
+          description: Number of Records Returned Per Page. (Maximum 200)
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: LastUpdated
+          in: path
+          description: Last Updated Date - yyyy-mm-dd - e.g. 2019-09-26
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerLookupLastUpdatedTx'
+              example:
+                Players:
+                  - CountryCode: string
+                    CountryCodeISO3: string
+                    Gender: string
+                    DateOfBirth: string
+                    PlayerId: 0
+                    FirstName: string
+                    LastName: string
+  /reference/countries:
+    get:
+      tags:
+        - Reference
+      summary: Reference - Countries
+      description: Reference - Countries
+      operationId: Country-Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryLookupTx'
+              example:
+                Countries:
+                  - CountryCode: string
+                    Name: string
+                    CountryCodeISO3: string
+  /reference/currencies:
+    get:
+      tags:
+        - Reference
+      summary: Reference - Currencies
+      description: Reference - Currencies
+      operationId: Currency-Data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLookupTx'
+              example:
+                Currencies:
+                  - CurrencyCode: string
+                    Name: string
+                    CurrencyCodeISO: string
+  /reference/eventstatuses:
+    get:
+      tags:
+        - Reference
+      summary: Reference - Event Status Definitions
+      description: Reference - Event Status Definitions
+      operationId: Event-Statuses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStatusLookupTx'
+              example:
+                Statuses:
+                  - EventStatusId: 0
+                    Name: string
+  '/rydercup/{Year}':
+    get:
+      tags:
+        - Ryder Cup
+      summary: Ryder Cup - Current Standing
+      description: Ryder Cup - Current Standing
+      operationId: Ryder-Cup-Player-Points
+      parameters:
+        - name: Year
+          in: path
+          description: Ryder Cup Tournament Year e.g. 2020
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RyderCupPlayerPointsTx'
+              example:
+                Year: 0
+                WeekDate: string
+                LastUpdated: string
+                Players:
+                  - PlayerId: 0
+                    FirstName: string
+                    LastName: string
+                    CountryCode: string
+                    CountryCodeISO3: string
+                    EuropeanPoints: 0
+                    EuropeanPointsRank: 0
+                    EuropeanQualifier: true
+  '/rydercup/{Year}/{WeekDate}':
+    get:
+      tags:
+        - Ryder Cup
+      summary: Ryder Cup - History
+      description: Ryder Cup - History
+      operationId: Ryder-Cup-Player-Points-Week
+      parameters:
+        - name: Year
+          in: path
+          description: Ryder Cup Tournament Year e.g. 2020
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: WeekDate
+          in: path
+          description: Week Date - yyyy-mm-dd - Date must be a Monday e.g. 2019-10-14
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RyderCupPlayerPointsWeekTx'
+              example:
+                Year: 0
+                WeekDate: string
+                LastUpdated: string
+                Players:
+                  - PlayerId: 0
+                    FirstName: string
+                    LastName: string
+                    CountryCode: string
+                    CountryCodeISO3: string
+                    EuropeanPoints: 0
+                    EuropeanPointsRank: 0
+                    EuropeanQualifier: true
+  '/stats/round/{EventId}/{RoundNo}':
+    get:
+      tags:
+        - Statistics
+      summary: Statistics - Round
+      description: Statistics - Round
+      operationId: Event-Round-Stats-Rankings
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: RoundNo
+          in: path
+          description: Round Number in Event. e.g. 1
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventRoundStatsTx'
+              example:
+                EventId: 0
+                Round: 0
+                Stats:
+                  - Stat: string
+                    FieldAvg: 0
+                    Rankings:
+                      - Value: 0
+                        Rank: 0
+                        PlayerId: 0
+                        FirstName: string
+                        LastName: string
+                        CountryCode: string
+  '/stats/season/{TourId}/{Season}':
+    get:
+      tags:
+        - Statistics
+      summary: Statistics - Season
+      description: Statistics - Season
+      operationId: Season-Stats-Rankings
+      parameters:
+        - name: TourId
+          in: path
+          description: "Tour Id -\r\n European Tour ID:\r\n1 = European Tour\r\n2 = Staysure Tour\r\n3 = Challenge Tour"
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: Season
+          in: path
+          description: Season Year - e.g. 2019
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeasonStatsTx'
+              example:
+                TourId: 0
+                Season: 0
+                Stats:
+                  - Stat: string
+                    FieldAvg: 0
+                    Rankings:
+                      - Value: 0
+                        Rank: 0
+                        PlayerId: 0
+                        FirstName: string
+                        LastName: string
+                        CountryCode: string
+  '/stats/event/{EventId}':
+    get:
+      tags:
+        - Statistics
+      summary: Statistics - Event
+      description: Statistics - Event
+      operationId: Event-Stats-Rankings
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStatsTx'
+              example:
+                EventId: 0
+                Stats:
+                  - Stat: string
+                    FieldAvg: 0
+                    Rankings:
+                      - Value: 0
+                        Rank: 0
+                        PlayerId: 0
+                        FirstName: string
+                        LastName: string
+                        CountryCode: string
+  /tours:
+    get:
+      tags:
+        - Tour
+      summary: Tour - Tours
+      description: Tour - Tours
+      operationId: Tours
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TourLookupTx'
+              example:
+                Tours:
+                  - TourId: 0
+                    Name: string
+  '/tour/seasons/{TourId}':
+    get:
+      tags:
+        - Tour
+      summary: Tour - Seasons
+      description: Tour - Seasons
+      operationId: Tour-Seasons
+      parameters:
+        - name: TourId
+          in: path
+          description: "Tour Id -\r\n European Tour ID:\r\n1 = European Tour\r\n2 = Staysure Tour\r\n3 = Challenge Tour"
+          required: true
+          schema:
+            maximum: 20.0
+            minimum: 1.0
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TourSeasonTx'
+              example:
+                TourId: 0
+                Tour: string
+                Seasons:
+                  - Season: 0
+                    IsCurrent: true
+                    StartDate: string
+                    EndDate: string
+  '/tour/categories/{TourId}/{Season}':
+    get:
+      tags:
+        - Tour
+      summary: Tour - Season Categories
+      description: Tour - Season Categories
+      operationId: Season-Categories
+      parameters:
+        - name: TourId
+          in: path
+          description: "Tour Id -\r\n European Tour ID:\r\n1 = European Tour\r\n2 = Staysure Tour\r\n3 = Challenge Tour"
+          required: true
+          schema:
+            maximum: 20.0
+            minimum: 1.0
+            type: integer
+            format: int32
+        - name: Season
+          in: path
+          description: Season Year. e.g. 2019
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SeasonCategoryTx'
+              example:
+                TourId: 0
+                Season: 0
+                Categories:
+                  - Name: string
+                    Description: string
+                    SortOrder: 0
+  '/tour/oom/{TourId}/{Season}':
+    get:
+      tags:
+        - Tour
+      summary: Tour - Order of Merit
+      description: Tour - Order of Merit
+      operationId: Tour-Season-Order-of-Merit
+      parameters:
+        - name: TourId
+          in: path
+          description: "Tour Id -\r\n European Tour ID:\r\n1 = European Tour\r\n2 = Staysure Tour\r\n3 = Challenge Tour"
+          required: true
+          schema:
+            maximum: 20.0
+            minimum: 1.0
+            type: integer
+            format: int32
+        - name: Season
+          in: path
+          description: Season Year. e.g. 2019
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOfMeritDataTx'
+              example:
+                LastEventId: 0
+                LastEvent: string
+                Players:
+                  - PlayerId: 0
+                    FirstName: string
+                    LastName: string
+                    CountryCode: string
+                    CountryCodeISO3: string
+                    RankingRank: 0
+                    RankingRounds: 0
+                    RankingPoints: 0
+                    RankingEuros: 0
+                    Category: string
+                    CategoryRank: 0
+                    WorldRanking: 0
+                    WorldRankingBest: 0
+                    RankingRankBest: 0
+  '/inplay/keyactions/{EventId}/{RoundNo}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Key Actions
+      description: In Play - Key Actions
+      operationId: Key-Actions-by-Event-and-Round
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: RoundNo
+          in: path
+          description: Round Number e.g. 1
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyActionsTx'
+              example:
+                EventId: 0
+                RoundNo: 0
+                Players:
+                  - PlayerId: 0
+                    FirstName: string
+                    LastName: string
+                    Position: 0
+                    PositionDesc: string
+                    IsTie: true
+                    Holes:
+                      - HoleNo: 0
+                        HoleOrder: 0
+                        HolePar: 0
+                        Strokes: 0
+                        ScoreToPar: 0
+                        Putts: 0
+                        SandSave: 0
+                        Scramble: 0
+                        Penalty: 0
+                        Actions:
+                          - string
+                HoleStats:
+                  - HoleNo: 0
+                    HolePar: 0
+                    ScoreAvg: 0
+                    PuttAvg: 0
+                    EaglesOrBetter: 0
+                    Birdies: 0
+                    TimesPlayed: 0
+                    GreensInRegulation: 0
+                    Pars: 0
+                    DoubleBogeysOrWorse: 0
+                    Bogeys: 0
+                    ThreePutts: 0
+                    Fairways: 0
+  '/player/gg/{PageNo}/{PageSize}':
+    get:
+      tags:
+        - Player
+      summary: Player - Lookup GG
+      description: Player - Lookup GG
+      operationId: Players-Lookup-GG
+      parameters:
+        - name: PageNo
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerLookupGGTx'
+              example:
+                Players:
+                  - PlayerId: 0
+                    FirstName: string
+                    LastName: string
+                    CountryCode: string
+                    CountryCodeISO3: string
+                    DateOfBirth: string
+                    Gender: string
+                    Email: string
+                    IsPro: true
+                    Mobile: string
+                    Attachment: string
+                    IncludeOom: true
+  /support/config:
+    get:
+      tags:
+        - Support
+      summary: Get API configuration
+      description: Get API configuration
+      operationId: Get-Api-Configuration
+      responses:
+        '200':
+          description: OK
+  '/inplay/shotdata/course/{EventId}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Shot Data Course
+      description: In Play - Shot Data Course
+      operationId: Shot-Data-Course-by-Event
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShotDataCourseTx'
+              example:
+                Course:
+                  - CourseNo: 0
+                    CourseName: string
+                    Round:
+                      - RoundNo: 0
+                        Hole:
+                          - HoleNo: 0
+                            TeeLatitude: 0
+                            TeeLongitude: 0
+                            PinLatitude: 0
+                            PinLongitude: 0
+                            Distance: 0
+  '/matchplay/team/event/{EventId}':
+    get:
+      tags:
+        - Matchplay
+      summary: Matchplay - Team Leaderboard
+      description: Matchplay - Team Leaderboard
+      operationId: Team-Matchplay-Leaderboard
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchplayLeaderboardTx'
+              example:
+                EventId: 0
+                Name: string
+                Rounds:
+                  - Name: string
+                    RoundNo: 0
+                    Matches:
+                      - HoleNo: string
+                        MatchNo: 0
+                        Standing: string
+                        StartHole: 0
+                        Status: string
+                        TeeTime: string
+                        Teams:
+                          - IsTied: true
+                            IsWinner: true
+                            IsLeader: true
+                            Points: 0
+                            SquadNo: 0
+                            TeamNo: 0
+                            TeamStanding: string
+                            Players:
+                              - PlayerId: 0
+                                Score:
+                                  - HoleNo: 0
+                                    IsOfficial: true
+                                    Strokes: string
+                            Score:
+                              - HoleNo: 0
+                                IsTied: true
+                                IsWinner: true
+                                Standing: string
+                                Strokes: string
+                                IsLeader: true
+                                IsFinished: true
+                Squads:
+                  - Name: string
+                    Points: 0
+                    SquadNo: 0
+                    Players:
+                      - CountryCode: string
+                        FirstName: string
+                        LastName: string
+                        PlayerId: 0
+  '/matchplay/hole/event/{EventId}/match{MatchNo}':
+    get:
+      tags:
+        - Matchplay
+      summary: Matchplay - Match Hole Data
+      description: Matchplay - Match Hole Data
+      operationId: Team-Matchplay-Hole-Data
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: MatchNo
+          in: path
+          description: Match Number
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchplayHoleDataTx'
+              example:
+                EventId: 0
+                MatchNo: 0
+                Players:
+                  - PlayerId: 0
+                    Holes:
+                      - HoleNo: 0
+                        HolePar: 0
+                        HoleLength: 0
+                        Strokes: 0
+                        Fairway: 0
+                        Bunkers: 0
+                        Putts: 0
+                        Drive: 0
+                        DriverUsed: 0
+                        GreenInRegulation: 0
+                        SandSave: 0
+                        Scramble: 0
+                        PossibleFairway: 0
+                        ScoreToPar: 0
+                        Eagle: 0
+                        Birdie: 0
+                        Par: 0
+                        Bogey: 0
+                        DoubleBogeyOrWorse: 0
+                        DrivingAccuracy: 0
+  '/matchplay/shot/event/{EventId}/match{MatchNo}':
+    get:
+      tags:
+        - Matchplay
+      summary: Matchplay - Match Shot Data
+      description: Matchplay - Match Shot Data
+      operationId: Team-Matchplay-Shot-Data
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: MatchNo
+          in: path
+          description: Match Number
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchplayShotDataTx'
+              example:
+                EventId: 0
+                MatchNo: 0
+                Players:
+                  - PlayerId: 0
+                    Holes:
+                      - HoleNo: 0
+                        HolePar: 0
+                        TeeLatitude: 0
+                        TeeLongitude: 0
+                        PinLatitude: 0
+                        PinLongitude: 0
+                        Shots:
+                          - ShotNo: 0
+                            ShotType: string
+                            DropType: string
+                            PenaltyType: string
+                            Club: string
+                            LieBefore: string
+                            LieAfter: string
+                            DistanceBeforeInch: 0
+                            DistanceAfterInch: 0
+                            Distance: 0
+                            BallLatitude: 0
+                            BallLongitude: 0
+                            ShotSequence: 0
+                            HitBallTime: string
+  '/tour/RolexSeries/{Season}':
+    get:
+      tags:
+        - Tour
+      summary: Tour - Rolex Series
+      description: Tour - Rolex Series
+      operationId: Rolex-Series
+      parameters:
+        - name: Season
+          in: path
+          description: Season Year. e.g. 2023
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RolexSeriesTx'
+              example:
+                Season: 0
+                Players:
+                  - CountryCode: string
+                    Events:
+                      - CountryCode: string
+                        Euros: 0
+                        EventDate: string
+                        EventId: 0
+                        Name: string
+                        IsTie: true
+                        MissedCut: true
+                        Points: 0
+                        Position: string
+                    FirstName: string
+                    LastName: string
+                    PlayerId: 0
+  '/tour/RankingGroups/{TourId}/{Season}':
+    get:
+      tags:
+        - Tour
+      summary: Tour - Ranking Groups
+      description: Tour - Ranking Groups
+      operationId: Ranking-Groups
+      parameters:
+        - name: TourId
+          in: path
+          description: "Tour Id -\r\n European Tour ID:\r\n1 = European Tour\r\n2 = Staysure Tour\r\n3 = Challenge Tour"
+          required: true
+          schema:
+            maximum: 20.0
+            minimum: 1.0
+            type: integer
+            format: int32
+        - name: Season
+          in: path
+          description: Season Year. e.g. 2023
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TourRankingTx'
+              example:
+                Groups:
+                  - GroupId: 0
+                    Name: string
+                    Events:
+                      - EventId: 0
+                        Event: string
+                TourId: 0
+                Tour: string
+                Season: 0
+  '/tour/GroupRanking/{GroupId}':
+    get:
+      tags:
+        - Tour
+      summary: Tour - Group Ranking
+      description: Tour - Group Ranking
+      operationId: Group-Ranking
+      parameters:
+        - name: GroupId
+          in: path
+          description: GroupId. e.g. 1
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TourGroupRankingTx'
+              example:
+                Ranking:
+                  - CountryCode: string
+                    CountryCodeISO3: string
+                    FirstName: string
+                    LastName: string
+                    PlayerId: 0
+                    RankingEuros: 0
+                    RankingPoints: 0
+                    RankingRank: 0
+                    RankingRounds: 0
+                LastEventId: 0
+                Group: string
+                LastEvent: string
+                Season: 0
+  '/inplay/groupranking/{EventId}/{GroupId}':
+    get:
+      tags:
+        - In Play
+      summary: In Play - Ranking
+      description: In Play - Ranking
+      operationId: In-Play-Group-Ranking
+      parameters:
+        - name: EventId
+          in: path
+          description: European Tour Event ID. e.g. 2019010
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: GroupId
+          in: path
+          description: Swing Group ID. e.g. 365
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RankingsProjectionTx'
+              example:
+                TourId: 0
+                Season: 0
+                EventId: 0
+                EventName: string
+                EventStatus: string
+                GroupId: 0
+                GroupName: string
+                Ranking:
+                  - PlayerId: 0
+                    FirstName: string
+                    LastName: string
+                    CountryCode: string
+                    CountryCodeISO3: string
+                    CurrentRank: 0
+                    CurrentPoints: 0
+                    ProjectedRank: 0
+                    ProjectedPoints: 0
+                    PointsEarnt: 0
+                    RankMoved: 0
+components:
+  schemas:
+    Coordinate:
+      type: object
+      properties:
+        Latitude:
+          type: number
+          description: Latitude
+          format: double
+          nullable: true
+        Longitude:
+          type: number
+          description: Longitude
+          format: double
+          nullable: true
+      additionalProperties: false
+      description: Coordinate
+    Coordinates:
+      type: object
+      properties:
+        Ball:
+          $ref: '#/components/schemas/Coordinate'
+        Tee:
+          $ref: '#/components/schemas/Coordinate'
+        Pin:
+          $ref: '#/components/schemas/Coordinate'
+      additionalProperties: false
+      description: All coordinates
+    Country:
+      type: object
+      properties:
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: CountryCodeISO3
+          nullable: true
+      additionalProperties: false
+      description: Country Definition
+    CountryLookupTx:
+      type: object
+      properties:
+        Countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+          description: List of Countries
+          nullable: true
+      additionalProperties: false
+      description: Country List
+    CourseTX:
+      type: object
+      properties:
+        CourseId:
+          type: integer
+          description: 'Course Id of the Golf Course. [1..n]'
+          format: int32
+          nullable: true
+        Course:
+          type: string
+          description: Course Name or Description
+          nullable: true
+        Matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchTX'
+          description: List of Matches in the Tournament on the given Course
+          nullable: true
+      additionalProperties: false
+      description: A Course definition with associated Matches
+    Currency:
+      type: object
+      properties:
+        CurrencyCode:
+          type: string
+          description: Currency Code
+          nullable: true
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        CurrencyCodeISO:
+          type: string
+          description: Currency Code ISO
+          nullable: true
+      additionalProperties: false
+      description: Currency Definition
+    CurrencyLookupTx:
+      type: object
+      properties:
+        Currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Currency'
+          description: List of Currencies
+          nullable: true
+      additionalProperties: false
+      description: Currency List
+    EntryListCategory:
+      type: object
+      properties:
+        Category:
+          type: string
+          description: Category Value
+          nullable: true
+        CategoryDescription:
+          type: string
+          description: Category Description
+          nullable: true
+        SortOrder:
+          type: integer
+          description: Category Sort Order
+          format: int32
+          nullable: true
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntryListPlayer'
+          description: List of Players in the Entry Category
+          nullable: true
+      additionalProperties: false
+      description: An Entry List Category
+    EntryListPlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int64
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+        CountryCode:
+          type: string
+          description: Player Country Code
+          nullable: true
+        CategoryRank:
+          type: integer
+          description: Player Category Rank
+          format: int32
+          nullable: true
+        AboveCutOff:
+          type: boolean
+          description: Player is Above Cut-Off Position
+        CutOffRank:
+          type: integer
+          description: Cut-Off Rank
+          format: int32
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: ISO-3166-3 Country Code
+          nullable: true
+        Gender:
+          type: string
+          description: Gender
+          nullable: true
+        IsAmateur:
+          type: boolean
+          description: Is Amateur
+          nullable: true
+      additionalProperties: false
+      description: A Player Definition on an Entry List
+    EntryListTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntryListCategory'
+          description: List of Entry Categories in the Event
+          nullable: true
+      additionalProperties: false
+      description: "Structured set of classes to represent Entry Lists\r\ntransformed from a flat set of SQL data."
+    EventCategory:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        Description:
+          type: string
+          description: Description
+          nullable: true
+        SortOrder:
+          type: integer
+          description: Sort Order
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Event Category
+    EventCategoryTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: ''
+          format: int32
+          nullable: true
+        Categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCategory'
+          description: ''
+          nullable: true
+      additionalProperties: false
+      description: Event Categories
+    EventCourseBothTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCourseCourse'
+          description: List of Courses in the Event
+          nullable: true
+      additionalProperties: false
+      description: "Structured set of classes to represent Course Setups\r\ntransformed from a flat set of SQL data."
+    EventCourseCourse:
+      type: object
+      properties:
+        CourseId:
+          type: integer
+          description: Course Id
+          format: int32
+        CourseNo:
+          type: integer
+          description: 'Course Number [1..n]'
+          format: int32
+        Course:
+          type: string
+          description: Course
+          nullable: true
+        Venue:
+          type: string
+          description: Venue
+          nullable: true
+        City:
+          type: string
+          description: Course
+          nullable: true
+        CountryCode:
+          type: string
+          description: Course
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Course
+          nullable: true
+        Country:
+          type: string
+          description: Course
+          nullable: true
+        Holes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventCourseHole'
+          description: List of Holes on the Course
+          nullable: true
+      additionalProperties: false
+      description: A Course definition for Course Setup
+    EventCourseHole:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          description: Hole Number
+          format: int32
+        Par:
+          type: integer
+          description: Hole Par
+          format: int32
+        DistanceMetre:
+          type: number
+          description: Hole Distance Metres
+          format: double
+          nullable: true
+        DistanceYard:
+          type: integer
+          description: Hole Distance Yards
+          format: int32
+          nullable: true
+        OfficialDrive:
+          type: boolean
+          description: Official Drive
+          nullable: true
+      additionalProperties: false
+      description: Hole definition for Course Setup
+    EventHistoryTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: EventId
+          format: int32
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        Status:
+          type: string
+          description: Status
+          nullable: true
+        StartDate:
+          type: string
+          description: StartDate
+          format: date-time
+        EndDate:
+          type: string
+          description: EndDate
+          format: date-time
+        CountryCode:
+          type: string
+          description: CountryCode
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: CountryCodeISO3
+          nullable: true
+        Country:
+          type: string
+          description: Country
+          nullable: true
+        TournamentId:
+          type: integer
+          description: TournamentId
+          format: int32
+          nullable: true
+        TournamentName:
+          type: string
+          description: TournamentName
+          nullable: true
+        NoOfRounds:
+          type: integer
+          description: NoOfRounds
+          format: int32
+        PrizeCurrencyCode:
+          type: string
+          description: PrizeCurrencyCode
+          nullable: true
+        PrizeMoney:
+          type: number
+          description: PrizeMoney
+          format: double
+          nullable: true
+        Points:
+          type: integer
+          description: Points
+          format: int32
+          nullable: true
+        IsOrderOfMerit:
+          type: boolean
+          description: IsOrderOfMerit
+        IsMajor:
+          type: boolean
+          description: IsMajor
+        IsFlagship:
+          type: boolean
+          description: IsFlagship
+        IsWGC:
+          type: boolean
+          description: IsWGC
+        IsMatchPlay:
+          type: boolean
+          description: IsMatchPlay
+        FieldSize:
+          type: integer
+          description: FieldSize
+          format: int32
+          nullable: true
+        CutValue:
+          type: integer
+          description: CutValue
+          format: int32
+          nullable: true
+        CutRound:
+          type: integer
+          description: CutRound
+          format: int32
+        IsDeleted:
+          type: boolean
+          description: IsDeleted
+      additionalProperties: false
+      description: Events History
+    EventInfoTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Event:
+          type: string
+          description: Event
+          nullable: true
+      additionalProperties: false
+      description: Tour Events
+    EventRS:
+      type: object
+      properties:
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        Euros:
+          type: number
+          description: Euros
+          format: double
+          nullable: true
+        EventDate:
+          type: string
+          description: Event Date
+          format: date-time
+          nullable: true
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Name:
+          type: string
+          description: Event Name
+          nullable: true
+        IsTie:
+          type: boolean
+          description: Is Tie
+        MissedCut:
+          type: boolean
+          description: Missed Cut
+        Points:
+          type: number
+          description: Points
+          format: double
+          nullable: true
+        Position:
+          type: string
+          description: Position
+          nullable: true
+      additionalProperties: false
+      description: Events
+    EventRoundStatsTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Round:
+          type: integer
+          description: Round
+          format: int32
+          nullable: true
+        Stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatsBaseTx'
+          description: List of Event Stats
+          nullable: true
+      additionalProperties: false
+      description: Event Round Stats
+    EventScheduleTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: EventId
+          format: int32
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        Status:
+          type: string
+          description: Status
+          nullable: true
+        StartDate:
+          type: string
+          description: StartDate
+          format: date-time
+        EndDate:
+          type: string
+          description: EndDate
+          format: date-time
+        CountryCode:
+          type: string
+          description: CountryCode
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: CountryCodeISO3
+          nullable: true
+        Country:
+          type: string
+          description: Country
+          nullable: true
+        TournamentId:
+          type: integer
+          description: TournamentId
+          format: int32
+          nullable: true
+        TournamentName:
+          type: string
+          description: TournamentName
+          nullable: true
+        NoOfRounds:
+          type: integer
+          description: NoOfRounds
+          format: int32
+        PrizeCurrencyCode:
+          type: string
+          description: PrizeCurrencyCode
+          nullable: true
+        PrizeCurrencyCodeISO:
+          type: string
+          description: PrizeCurrencyCodeISO
+          nullable: true
+        PrizeMoney:
+          type: number
+          description: PrizeMoney
+          format: double
+          nullable: true
+        Points:
+          type: integer
+          description: Points
+          format: int32
+          nullable: true
+        IsOrderOfMerit:
+          type: boolean
+          description: IsOrderOfMerit
+        GenerateStats:
+          type: boolean
+          description: GenerateStats
+        IsMajor:
+          type: boolean
+          description: IsMajor
+        IsFlagship:
+          type: boolean
+          description: IsFlagship
+        IsWGC:
+          type: boolean
+          description: IsWGC
+        IsMatchPlay:
+          type: boolean
+          description: IsMatchPlay
+        FieldSize:
+          type: integer
+          description: FieldSize
+          format: int32
+          nullable: true
+        CutValue:
+          type: integer
+          description: CutValue
+          format: int32
+          nullable: true
+        CutRound:
+          type: integer
+          description: CutRound
+          format: int32
+        IsDeleted:
+          type: boolean
+          description: IsDeleted
+        ShotDataSource:
+          type: string
+          description: ShotDataSource
+          nullable: true
+        IsRolex:
+          type: boolean
+          description: IsRolex
+          nullable: true
+      additionalProperties: false
+      description: Events Schedule
+    EventStatsTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatsBaseTx'
+          description: List of Event Stats
+          nullable: true
+      additionalProperties: false
+      description: Events Stats
+    EventStatusDefinition:
+      type: object
+      properties:
+        EventStatusId:
+          type: integer
+          description: Event Status Id
+          format: int32
+        Name:
+          type: string
+          description: Name
+          nullable: true
+      additionalProperties: false
+      description: ''
+    EventStatusLookupTx:
+      type: object
+      properties:
+        Statuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventStatusDefinition'
+          description: Statuses
+          nullable: true
+      additionalProperties: false
+      description: Event Status Lookup
+    EventStatus_Result:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          format: int32
+        Name:
+          type: string
+          nullable: true
+        StatusId:
+          type: integer
+          format: int32
+        Status:
+          type: string
+          nullable: true
+        NoOfRounds:
+          type: integer
+          format: int32
+        CurrentRound:
+          type: integer
+          format: int32
+        RoundStatusId:
+          type: integer
+          format: int32
+        RoundStatus:
+          type: string
+          nullable: true
+        LastUpdated:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ExchangeRateCurrency:
+      type: object
+      properties:
+        Currency:
+          type: string
+          description: Currency
+          nullable: true
+        Rate:
+          type: number
+          description: Rate
+          format: double
+      additionalProperties: false
+      description: Exchange Rate Currency
+    ExchangeRateTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExchangeRateCurrency'
+          description: Currencies
+          nullable: true
+      additionalProperties: false
+      description: Event Exchange Rates
+    GroupTx:
+      type: object
+      properties:
+        GroupId:
+          type: integer
+          description: Group Id
+          format: int32
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        Events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventInfoTx'
+          description: Events
+          nullable: true
+      additionalProperties: false
+      description: Tour Groups
+    Hole:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          format: int32
+        HolePar:
+          type: integer
+          format: int32
+          nullable: true
+        HoleLength:
+          type: number
+          format: double
+          nullable: true
+        Strokes:
+          type: integer
+          format: int32
+          nullable: true
+        Fairway:
+          type: integer
+          format: int32
+          nullable: true
+        Bunkers:
+          type: integer
+          format: int32
+          nullable: true
+        Putts:
+          type: integer
+          format: int32
+          nullable: true
+        Drive:
+          type: integer
+          format: int32
+          nullable: true
+        DriverUsed:
+          type: integer
+          format: int32
+          nullable: true
+        GreenInRegulation:
+          type: integer
+          format: int32
+          nullable: true
+        SandSave:
+          type: integer
+          format: int32
+          nullable: true
+        Scramble:
+          type: integer
+          format: int32
+          nullable: true
+        PossibleFairway:
+          type: integer
+          format: int32
+          nullable: true
+        ScoreToPar:
+          type: integer
+          format: int32
+          nullable: true
+        Eagle:
+          type: integer
+          format: int32
+          nullable: true
+        Birdie:
+          type: integer
+          format: int32
+          nullable: true
+        Par:
+          type: integer
+          format: int32
+          nullable: true
+        Bogey:
+          type: integer
+          format: int32
+          nullable: true
+        DoubleBogeyOrWorse:
+          type: integer
+          format: int32
+          nullable: true
+        DrivingAccuracy:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Hole1:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          format: int32
+        HolePar:
+          type: integer
+          format: int32
+          nullable: true
+        TeeLatitude:
+          type: number
+          format: double
+          nullable: true
+        TeeLongitude:
+          type: number
+          format: double
+          nullable: true
+        PinLatitude:
+          type: number
+          format: double
+          nullable: true
+        PinLongitude:
+          type: number
+          format: double
+          nullable: true
+        Shots:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shot'
+          nullable: true
+      additionalProperties: false
+    HoleByHoleHole:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          description: Hole Number
+          format: int32
+        HoleOrder:
+          type: integer
+          description: Hole Order
+          format: int32
+        Strokes:
+          type: integer
+          description: Strokes Played
+          format: int32
+        ScoreToPar:
+          type: integer
+          description: Score To Par
+          format: int32
+          nullable: true
+        Fairway:
+          type: integer
+          description: Fairway Hit
+          format: int32
+          nullable: true
+        Bunkers:
+          type: integer
+          description: Bunker Hit
+          format: int32
+          nullable: true
+        Putts:
+          type: integer
+          description: Putts Taken
+          format: int32
+          nullable: true
+        Drive:
+          type: integer
+          description: Drive Distance
+          format: int32
+          nullable: true
+        DriverUsed:
+          type: boolean
+          description: Driver Used
+          nullable: true
+        OfficialDrive:
+          type: boolean
+          description: Official Drive
+          nullable: true
+        GreenInRegulation:
+          type: integer
+          description: Green In Regulation
+          format: int32
+          nullable: true
+        SandSave:
+          type: integer
+          description: Sand Save
+          format: int32
+          nullable: true
+        Scramble:
+          type: integer
+          description: Scramble
+          format: int32
+          nullable: true
+        PossibleFairway:
+          type: integer
+          description: Possible Fairway
+          format: int32
+          nullable: true
+        DrivingAccuracy:
+          type: integer
+          description: Driving Accuracy
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: A Hole in the Hole-by-Hole Round
+    HoleByHolePlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+        Rounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/HoleByHoleRound'
+          description: Rounds
+          nullable: true
+      additionalProperties: false
+      description: Hole by Hole Player
+    HoleByHoleRound:
+      type: object
+      properties:
+        RoundNo:
+          type: integer
+          description: Round Number
+          format: int32
+        CourseId:
+          type: integer
+          description: Course Id
+          format: int32
+        CourseNo:
+          type: integer
+          description: 'Course Number [1..n]'
+          format: int32
+        ScorecardVerified:
+          type: boolean
+          description: Denotes whether the Scorecard has been verified for the Round
+        StatsGenerated:
+          type: boolean
+          description: Denotes whether the stats have been generated for the Round
+        Holes:
+          type: array
+          items:
+            $ref: '#/components/schemas/HoleByHoleHole'
+          description: List of Holes in the Round
+          nullable: true
+      additionalProperties: false
+      description: A Round of Hole-by-Hole Data
+    HoleByHoleTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/HoleByHolePlayer'
+          description: List of Players
+          nullable: true
+      additionalProperties: false
+      description: Hole by Hole for full Event
+    KeyActionHole:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          description: HoleNo
+          format: int32
+        HoleOrder:
+          type: integer
+          description: HoleOrder
+          format: int32
+        HolePar:
+          type: integer
+          description: HolePar
+          format: int32
+          nullable: true
+        Strokes:
+          type: integer
+          description: Strokes
+          format: int32
+        ScoreToPar:
+          type: integer
+          description: ScoreToPar
+          format: int32
+          nullable: true
+        Putts:
+          type: integer
+          description: Putts
+          format: int32
+        SandSave:
+          type: integer
+          description: SandSave
+          format: int32
+        Scramble:
+          type: integer
+          description: Scramble
+          format: int32
+        Penalty:
+          type: integer
+          description: Penalty
+          format: int32
+        Actions:
+          type: array
+          items:
+            type: string
+          description: Actions
+          nullable: true
+      additionalProperties: false
+    KeyActionPlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: PlayerId
+          format: int32
+        FirstName:
+          type: string
+          description: FirstName
+          nullable: true
+        LastName:
+          type: string
+          description: LastName
+          nullable: true
+        Position:
+          type: integer
+          description: Position
+          format: int32
+        PositionDesc:
+          type: string
+          description: PositionDesc
+          nullable: true
+        IsTie:
+          type: boolean
+          description: IsTie
+        Holes:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyActionHole'
+          description: KeyActionsHoles
+          nullable: true
+      additionalProperties: false
+    KeyActionsHoleStat:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          description: HoleNo
+          format: int32
+        HolePar:
+          type: integer
+          description: HolePar
+          format: int32
+          nullable: true
+        ScoreAvg:
+          type: number
+          description: ScoreAvg
+          format: double
+          nullable: true
+        PuttAvg:
+          type: number
+          description: PuttAvg
+          format: double
+          nullable: true
+        EaglesOrBetter:
+          type: integer
+          description: EaglesOrBetter
+          format: int32
+          nullable: true
+        Birdies:
+          type: integer
+          description: Birdies
+          format: int32
+          nullable: true
+        TimesPlayed:
+          type: integer
+          description: TimesPlayed
+          format: int32
+          nullable: true
+        GreensInRegulation:
+          type: integer
+          description: GreensInRegulation
+          format: int32
+          nullable: true
+        Pars:
+          type: integer
+          description: Pars
+          format: int32
+          nullable: true
+        DoubleBogeysOrWorse:
+          type: integer
+          description: DoubleBogeysOrWorse
+          format: int32
+          nullable: true
+        Bogeys:
+          type: integer
+          description: Bogeys
+          format: int32
+          nullable: true
+        ThreePutts:
+          type: integer
+          description: ThreePutts
+          format: int32
+          nullable: true
+        Fairways:
+          type: integer
+          description: Fairways
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Key Actions Hole Stat
+    KeyActionsTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        RoundNo:
+          type: integer
+          description: Round Number
+          format: int32
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyActionPlayer'
+          description: Key Actions Player
+          nullable: true
+        HoleStats:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyActionsHoleStat'
+          description: Key Actions Hole Stats
+          nullable: true
+      additionalProperties: false
+      description: Key Actions
+    LeaderboardPlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int64
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+        Position:
+          type: integer
+          description: Position
+          format: int32
+        PositionMoved:
+          type: integer
+          description: Position Moved
+          format: int32
+        PositionDesc:
+          type: string
+          description: Position Description
+          nullable: true
+        SortOrder:
+          type: integer
+          description: Sort Order
+          format: int32
+        IsTie:
+          type: boolean
+          description: Is Tie
+        MissedCut:
+          type: boolean
+          description: Missed Cut
+          nullable: true
+        Euros:
+          type: number
+          description: Euros
+          format: double
+          nullable: true
+        Points:
+          type: number
+          description: Points
+          format: double
+          nullable: true
+        RoundsPlayed:
+          type: integer
+          description: Rounds Played
+          format: int32
+          nullable: true
+        Strokes:
+          type: integer
+          description: Strokes
+          format: int32
+          nullable: true
+        ScoreToPar:
+          type: integer
+          description: Score To Par
+          format: int32
+          nullable: true
+        LastUpdated:
+          type: string
+          description: Last Updated
+          format: date-time
+          nullable: true
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Country Code ISO3
+          nullable: true
+        HolesPlayed:
+          type: integer
+          description: Holes Played
+          format: int32
+          nullable: true
+        Rounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardRound'
+          description: Rounds
+          nullable: true
+      additionalProperties: false
+      description: Leaderboard Player
+    LeaderboardRound:
+      type: object
+      properties:
+        RoundNo:
+          type: integer
+          description: RoundNo
+          format: int32
+        Strokes:
+          type: integer
+          description: Strokes
+          format: int32
+          nullable: true
+        ScoreToPar:
+          type: integer
+          description: Score To Par
+          format: int32
+          nullable: true
+        HolesPlayed:
+          type: integer
+          description: Holes Played
+          format: int32
+          nullable: true
+        ScorecardVerified:
+          type: boolean
+          description: Scorecard Verified
+        StatsGenerated:
+          type: boolean
+          description: Stats Generated
+      additionalProperties: false
+      description: Leaderboard Rounds
+    LeaderboardTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Name:
+          type: string
+          description: Event Name
+          nullable: true
+        CutValue:
+          type: integer
+          description: Cut Value
+          format: int32
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardPlayer'
+          description: List of Players on Leaderboard
+          nullable: true
+      additionalProperties: false
+      description: "Structured set of classes to represent Leaderboard Data\r\ntransformed from a flat set of SQL data."
+    Match:
+      type: object
+      properties:
+        HoleNo:
+          type: string
+          nullable: true
+        MatchNo:
+          type: integer
+          format: int32
+        Standing:
+          type: string
+          nullable: true
+        StartHole:
+          type: integer
+          format: int32
+        Status:
+          type: string
+          nullable: true
+        TeeTime:
+          type: string
+          nullable: true
+        Teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+          nullable: true
+      additionalProperties: false
+    MatchTX:
+      type: object
+      properties:
+        Match:
+          type: integer
+          description: 'Match Number [1..n]'
+          format: int32
+          nullable: true
+        Tee:
+          type: integer
+          description: Tee Number where Match begins
+          format: int32
+          nullable: true
+        TeeTime:
+          type: string
+          description: Tee Time of the Match
+          nullable: true
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/Player'
+          description: List of Players in the Match
+          nullable: true
+      additionalProperties: false
+      description: A Match in a Round of Golf in a Tournament
+    MatchplayHoleDataTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          format: int32
+        MatchNo:
+          type: integer
+          format: int32
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/Player1'
+          nullable: true
+      additionalProperties: false
+    MatchplayLeaderboardTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          format: int32
+        Name:
+          type: string
+          nullable: true
+        Rounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchplayRound'
+          nullable: true
+        Squads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Squad'
+          nullable: true
+      additionalProperties: false
+    MatchplayPlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          format: int32
+        Score:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerScore'
+          nullable: true
+      additionalProperties: false
+    MatchplayRound:
+      type: object
+      properties:
+        Name:
+          type: string
+          nullable: true
+        RoundNo:
+          type: integer
+          format: int32
+        Matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/Match'
+          nullable: true
+      additionalProperties: false
+    MatchplayShotDataTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          format: int32
+        MatchNo:
+          type: integer
+          format: int32
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/Player2'
+          nullable: true
+      additionalProperties: false
+    OrderOfMeritDataTx:
+      type: object
+      properties:
+        LastEventId:
+          type: integer
+          format: int32
+          nullable: true
+        LastEvent:
+          type: string
+          nullable: true
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderOfMerit_PlayerTx'
+          nullable: true
+      additionalProperties: false
+    OrderOfMerit_PlayerTx:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          format: int32
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        CountryCode:
+          type: string
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          nullable: true
+        RankingRank:
+          type: integer
+          format: int32
+          nullable: true
+        RankingRounds:
+          type: integer
+          format: int32
+          nullable: true
+        RankingPoints:
+          type: number
+          format: double
+          nullable: true
+        RankingEuros:
+          type: number
+          format: double
+          nullable: true
+        Category:
+          type: string
+          nullable: true
+        CategoryRank:
+          type: integer
+          format: int32
+          nullable: true
+        WorldRanking:
+          type: integer
+          format: int32
+          nullable: true
+        WorldRankingBest:
+          type: integer
+          format: int32
+          nullable: true
+        RankingRankBest:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Player:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: 'Player Id Number [European Tour ID]'
+          format: int32
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+        MatchOrder:
+          type: integer
+          description: 'Order of Play in the Match [1..n]'
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Basic Player Information for a Player in a Match
+    Player1:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          format: int32
+        Holes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hole'
+          nullable: true
+      additionalProperties: false
+    Player2:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          format: int32
+        Holes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hole1'
+          nullable: true
+      additionalProperties: false
+    PlayerAndScoreUploaded:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: PlayerId
+          format: int32
+        ScoresUploaded:
+          type: boolean
+          description: ScoresUploaded
+        LastUpdated:
+          type: string
+          description: LastUpdated
+          format: date-time
+      additionalProperties: false
+      description: Shot Data Availability Player
+    PlayerBioTx:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Country Code ISO3
+          nullable: true
+        Gender:
+          type: string
+          description: Gender
+          nullable: true
+        DateOfBirth:
+          type: string
+          description: Date Of Birth
+          format: date-time
+          nullable: true
+        IsPro:
+          type: boolean
+          description: Is Pro
+        Interests:
+          type: string
+          description: Interests
+          nullable: true
+        HeightCm:
+          type: number
+          description: Height (cm)
+          format: double
+          nullable: true
+        HeightFt:
+          type: string
+          description: Height (ft)
+          nullable: true
+        Birthplace:
+          type: string
+          description: Birthplace
+          nullable: true
+      additionalProperties: false
+      description: Player Details
+    PlayerEventsEvent:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        TourId:
+          type: integer
+          description: Tour Id
+          format: int32
+        Tour:
+          type: string
+          description: Tour
+          nullable: true
+        Year:
+          type: integer
+          description: Year
+          format: int32
+        Position:
+          type: string
+          description: Position
+          nullable: true
+        IsTie:
+          type: boolean
+          description: Is Tie
+        OfficialEvent:
+          type: boolean
+          description: Official Event
+      additionalProperties: false
+      description: ''
+    PlayerEventsTx:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+        Events:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerEventsEvent'
+          description: Events
+          nullable: true
+      additionalProperties: false
+      description: Player Events
+    PlayerLookupGGTx:
+      type: object
+      properties:
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerLookupPlayerGG'
+          description: List of Players
+          nullable: true
+      additionalProperties: false
+      description: Player Look Up for Golf Genius
+    PlayerLookupLastUpdatedTx:
+      type: object
+      properties:
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerLookupPlayer'
+          description: List of Players
+          nullable: true
+      additionalProperties: false
+      description: Player Look Up Last Updated
+    PlayerLookupPlayer:
+      type: object
+      properties:
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Country Code ISO3
+          nullable: true
+        Gender:
+          type: string
+          description: Gender
+          nullable: true
+        DateOfBirth:
+          type: string
+          description: Date Of Birth
+          format: date-time
+          nullable: true
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int64
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+      additionalProperties: false
+      description: Player Lookup Player
+    PlayerLookupPlayerGG:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int64
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Country Code ISO3
+          nullable: true
+        DateOfBirth:
+          type: string
+          description: Date Of Birth
+          format: date-time
+          nullable: true
+        Gender:
+          type: string
+          description: Gender
+          nullable: true
+        Email:
+          type: string
+          description: Email
+          nullable: true
+        IsPro:
+          type: boolean
+          description: IsPro
+        Mobile:
+          type: string
+          description: Mobile
+          nullable: true
+        Attachment:
+          type: string
+          description: Attachment
+          nullable: true
+        IncludeOom:
+          type: boolean
+          description: IncludeOom
+          nullable: true
+      additionalProperties: false
+      description: Player Lookup Player for Golf Genius
+    PlayerLookupTx:
+      type: object
+      properties:
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerLookupPlayer'
+          description: List of Players
+          nullable: true
+      additionalProperties: false
+      description: Player Look Up Last Updated
+    PlayerRS:
+      type: object
+      properties:
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        Events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventRS'
+          description: Events
+          nullable: true
+        FirstName:
+          type: string
+          description: First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Last Name
+          nullable: true
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+      additionalProperties: false
+      description: Players
+    PlayerScore:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          format: int32
+        IsOfficial:
+          type: boolean
+          nullable: true
+        Strokes:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PlayoffHole:
+      type: object
+      properties:
+        HoleOrder:
+          type: integer
+          description: HoleOrder
+          format: int32
+        HoleNo:
+          type: integer
+          description: HoleNo
+          format: int32
+        HolePar:
+          type: integer
+          description: HolePar
+          format: int32
+        HoleStrokes:
+          type: string
+          description: HoleStrokes
+          nullable: true
+        HoleScoreToPar:
+          type: integer
+          description: HoleScoreToPar
+          format: int32
+      additionalProperties: false
+    PlayoffPlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: PlayerId
+          format: int32
+        SortOrder:
+          type: integer
+          description: SortOrder
+          format: int32
+        Result:
+          type: string
+          description: Result
+          nullable: true
+        ScoreToPar:
+          type: integer
+          description: ScoreToPar
+          format: int32
+        PlayoffHoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayoffHole'
+          description: Holes
+          nullable: true
+      additionalProperties: false
+      description: Playoff Player
+    PlayoffTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        CourseNo:
+          type: integer
+          description: Course Number
+          format: int32
+        Type:
+          type: string
+          description: Type
+          nullable: true
+        PlayoffPlayers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayoffPlayer'
+          description: Playoff players
+          nullable: true
+      additionalProperties: false
+      description: Playoff
+    RankingTx:
+      type: object
+      properties:
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Country Code ISO3
+          nullable: true
+        FirstName:
+          type: string
+          description: FirsbtName
+          nullable: true
+        LastName:
+          type: string
+          description: Last Name
+          nullable: true
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+        RankingEuros:
+          type: number
+          description: Ranking Euros
+          format: double
+        RankingPoints:
+          type: number
+          description: Ranking Points
+          format: double
+        RankingRank:
+          type: integer
+          description: Ranking Rank
+          format: int32
+        RankingRounds:
+          type: integer
+          description: Ranking Rounds
+          format: int32
+      additionalProperties: false
+      description: Tour Rankiing
+    RankingsProjectionRankingTx:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          format: int32
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        CountryCode:
+          type: string
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          nullable: true
+        CurrentRank:
+          type: integer
+          format: int32
+          nullable: true
+        CurrentPoints:
+          type: number
+          format: double
+          nullable: true
+        ProjectedRank:
+          type: integer
+          format: int32
+          nullable: true
+        ProjectedPoints:
+          type: number
+          format: double
+          nullable: true
+        PointsEarnt:
+          type: number
+          format: double
+          nullable: true
+        RankMoved:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    RankingsProjectionTx:
+      type: object
+      properties:
+        TourId:
+          type: integer
+          format: int32
+        Season:
+          type: integer
+          format: int32
+        EventId:
+          type: integer
+          format: int32
+        EventName:
+          type: string
+          nullable: true
+        EventStatus:
+          type: string
+          nullable: true
+        GroupId:
+          type: integer
+          format: int32
+        GroupName:
+          type: string
+          nullable: true
+        Ranking:
+          type: array
+          items:
+            $ref: '#/components/schemas/RankingsProjectionRankingTx'
+          nullable: true
+      additionalProperties: false
+    RolexSeriesTx:
+      type: object
+      properties:
+        Season:
+          type: integer
+          description: Season
+          format: int32
+          nullable: true
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerRS'
+          description: List of Players
+          nullable: true
+      additionalProperties: false
+      description: Rolex Series
+    Round:
+      type: object
+      properties:
+        RoundNo:
+          type: integer
+          description: Round Number
+          format: int32
+        Courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CourseTX'
+          description: List of Courses in a given round of a Tournament
+          nullable: true
+      additionalProperties: false
+      description: Represents a Round of Golf in a Tournament
+    RyderCupPlayerPointsTx:
+      type: object
+      properties:
+        Year:
+          type: integer
+          description: Year
+          format: int32
+        WeekDate:
+          type: string
+          description: Week Date
+          format: date-time
+        LastUpdated:
+          type: string
+          description: Last Updated
+          format: date-time
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/RyderCupPointsPlayer'
+          description: List of Ryder Cup Players
+          nullable: true
+      additionalProperties: false
+      description: Ryder Cup Player Points
+    RyderCupPlayerPointsWeekTx:
+      type: object
+      properties:
+        Year:
+          type: integer
+          description: Year
+          format: int32
+        WeekDate:
+          type: string
+          description: Week Date
+          format: date-time
+        LastUpdated:
+          type: string
+          description: Last Updated
+          format: date-time
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/RyderCupPointsPlayer'
+          description: List of Ryder Cup Players
+          nullable: true
+      additionalProperties: false
+      description: Ryder Cup Player Points Week
+    RyderCupPointsPlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int64
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Country Code ISO3
+          nullable: true
+        EuropeanPoints:
+          type: number
+          description: European Points
+          format: double
+        EuropeanPointsRank:
+          type: integer
+          description: European Points Rank
+          format: int64
+          nullable: true
+        EuropeanQualifier:
+          type: boolean
+          description: European Qualifier
+          nullable: true
+      additionalProperties: false
+      description: Ryder Cup Points Player
+    Score:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          format: int32
+        IsTied:
+          type: boolean
+        IsWinner:
+          type: boolean
+        Standing:
+          type: string
+          nullable: true
+        Strokes:
+          type: string
+          nullable: true
+        IsLeader:
+          type: boolean
+          nullable: true
+        IsFinished:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    ScorecardHoleDetailedTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+        Rounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/HoleByHoleRound'
+          description: List of Rounds
+          nullable: true
+      additionalProperties: false
+      description: "Structured set of classes to represent Hole-by-Hole Data\r\ntransformed from a flat set of SQL data."
+    SeasonCategory:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Name
+          nullable: true
+        Description:
+          type: string
+          description: Description
+          nullable: true
+        SortOrder:
+          type: integer
+          description: Sort Order
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Season Category
+    SeasonCategoryTx:
+      type: object
+      properties:
+        TourId:
+          type: integer
+          description: Tour Id
+          format: int32
+          nullable: true
+        Season:
+          type: integer
+          description: Season
+          format: int32
+          nullable: true
+        Categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/SeasonCategory'
+          description: List of Categories
+          nullable: true
+      additionalProperties: false
+      description: Season-wide Categories
+    SeasonStatsTx:
+      type: object
+      properties:
+        TourId:
+          type: integer
+          description: Tour Id
+          format: int32
+        Season:
+          type: integer
+          description: Season
+          format: int32
+        Stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatsBaseTx'
+          description: List of Event Stats
+          nullable: true
+      additionalProperties: false
+      description: Season Stats
+    Shot:
+      type: object
+      properties:
+        ShotNo:
+          type: integer
+          format: int32
+        ShotType:
+          type: string
+          nullable: true
+        DropType:
+          type: string
+          nullable: true
+        PenaltyType:
+          type: string
+          nullable: true
+        Club:
+          type: string
+          nullable: true
+        LieBefore:
+          type: string
+          nullable: true
+        LieAfter:
+          type: string
+          nullable: true
+        DistanceBeforeInch:
+          type: number
+          format: double
+          nullable: true
+        DistanceAfterInch:
+          type: number
+          format: double
+          nullable: true
+        Distance:
+          type: number
+          format: double
+          nullable: true
+        BallLatitude:
+          type: number
+          format: double
+          nullable: true
+        BallLongitude:
+          type: number
+          format: double
+          nullable: true
+        ShotSequence:
+          type: integer
+          format: int32
+          nullable: true
+        HitBallTime:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    ShotDataAvailabilityTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        RoundNo:
+          type: integer
+          description: Round Number
+          format: int32
+        ShotDataAvailability:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerAndScoreUploaded'
+          description: Shot Data Availability
+          nullable: true
+      additionalProperties: false
+      description: Shot Data
+    ShotDataCourse:
+      type: object
+      properties:
+        CourseNo:
+          type: integer
+          description: Course Number
+          format: int32
+        CourseName:
+          type: string
+          description: Course Name
+          nullable: true
+        Round:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShotDataCourseRound'
+          description: Shot data course round
+          nullable: true
+      additionalProperties: false
+    ShotDataCourseHole:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          description: Hole Number
+          format: int32
+        TeeLatitude:
+          type: number
+          description: Tee Latitude
+          format: double
+        TeeLongitude:
+          type: number
+          description: Tee Longitude
+          format: double
+        PinLatitude:
+          type: number
+          description: Pin Latitude
+          format: double
+        PinLongitude:
+          type: number
+          description: Pin Longitude
+          format: double
+        Distance:
+          type: number
+          description: Distance
+          format: double
+      additionalProperties: false
+    ShotDataCourseRound:
+      type: object
+      properties:
+        RoundNo:
+          type: integer
+          description: Round Number
+          format: int32
+        Hole:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShotDataCourseHole'
+          description: Shot data course hole
+          nullable: true
+      additionalProperties: false
+    ShotDataCourseTx:
+      type: object
+      properties:
+        Course:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShotDataCourse'
+          description: Shot data course
+          nullable: true
+      additionalProperties: false
+      description: Shot Data
+    ShotDataHole:
+      type: object
+      properties:
+        HoleNo:
+          type: integer
+          description: Hole Number
+          format: int32
+        Shots:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShotDataShot'
+          description: Shots
+          nullable: true
+      additionalProperties: false
+      description: Shot Data Hole
+    ShotDataShot:
+      type: object
+      properties:
+        ShotNo:
+          type: integer
+          description: Shot Number
+          format: int32
+        ShotIndex:
+          type: integer
+          description: Shot Index
+          format: int32
+          nullable: true
+        ShotType:
+          type: string
+          description: Shot Type
+          nullable: true
+        ProvisionalIndex:
+          type: integer
+          description: Provisional Index
+          format: int32
+          nullable: true
+        DropType:
+          type: string
+          description: Drop Type
+          nullable: true
+        PenaltyType:
+          type: string
+          description: Penalty Type
+          nullable: true
+        ShotData:
+          type: boolean
+          description: Shot Data
+          nullable: true
+        Club:
+          type: string
+          description: Club
+          nullable: true
+        LieBefore:
+          type: string
+          description: Lie Before
+          nullable: true
+        LieAfter:
+          type: string
+          description: Lie After
+          nullable: true
+        DistanceBeforeInch:
+          type: number
+          description: Distance Before Inch
+          format: double
+          nullable: true
+        DistanceAfterInch:
+          type: number
+          description: Distance After Inch
+          format: double
+          nullable: true
+        Distance:
+          type: number
+          description: Distance
+          format: double
+          nullable: true
+        Coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        Timestamp:
+          type: string
+          description: Timestamp
+          format: date-time
+      additionalProperties: false
+      description: Shot Data Shot
+    ShotDataTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+        RoundNo:
+          type: integer
+          description: Round Number
+          format: int32
+        CourseNo:
+          type: integer
+          description: Course Number
+          format: int32
+        Holes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShotDataHole'
+          description: Holes
+          nullable: true
+      additionalProperties: false
+      description: Shot Data
+    Squad:
+      type: object
+      properties:
+        Name:
+          type: string
+          nullable: true
+        Points:
+          type: number
+          format: double
+        SquadNo:
+          type: integer
+          format: int32
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/SquadPlayer'
+          nullable: true
+      additionalProperties: false
+    SquadPlayer:
+      type: object
+      properties:
+        CountryCode:
+          type: string
+          nullable: true
+        FirstName:
+          type: string
+          nullable: true
+        LastName:
+          type: string
+          nullable: true
+        PlayerId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    StatsBaseTx:
+      type: object
+      properties:
+        Stat:
+          type: string
+          description: Stat Name
+          nullable: true
+        FieldAvg:
+          type: number
+          description: Field Average
+          format: double
+        Rankings:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatsRankingBase'
+          description: List of Rankings for Stat
+          nullable: true
+      additionalProperties: false
+      description: Base Class for Stat with Rankings List
+    StatsRankingBase:
+      type: object
+      properties:
+        Value:
+          type: number
+          description: Value
+          format: double
+        Rank:
+          type: integer
+          description: Rank
+          format: int32
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int64
+        FirstName:
+          type: string
+          description: Player First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Player Last Name
+          nullable: true
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+      additionalProperties: false
+      description: Base class for Stats Rankings Data
+    Team:
+      type: object
+      properties:
+        IsTied:
+          type: boolean
+        IsWinner:
+          type: boolean
+        IsLeader:
+          type: boolean
+        Points:
+          type: number
+          format: double
+        SquadNo:
+          type: integer
+          format: int32
+        TeamNo:
+          type: integer
+          format: int32
+        TeamStanding:
+          type: string
+          nullable: true
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchplayPlayer'
+          nullable: true
+        Score:
+          type: array
+          items:
+            $ref: '#/components/schemas/Score'
+          nullable: true
+      additionalProperties: false
+    TeeTimesTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Rounds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Round'
+          description: List of Round objects
+          nullable: true
+      additionalProperties: false
+      description: "Structured set of classes to represent Tee Times\r\ntransformed from a flat set of SQL data."
+    TourGroupRankingTx:
+      type: object
+      properties:
+        Ranking:
+          type: array
+          items:
+            $ref: '#/components/schemas/RankingTx'
+          description: Ranking
+          nullable: true
+        LastEventId:
+          type: integer
+          description: Last Event Id
+          format: int32
+        Group:
+          type: string
+          description: Group
+          nullable: true
+        LastEvent:
+          type: string
+          description: Last Event
+          nullable: true
+        Season:
+          type: integer
+          description: Season
+          format: int32
+      additionalProperties: false
+      description: Tour Group Ranking
+    TourLookupTour:
+      type: object
+      properties:
+        TourId:
+          type: integer
+          description: Tour Id
+          format: int32
+        Name:
+          type: string
+          description: Tour Name
+          nullable: true
+      additionalProperties: false
+      description: Tour Definition
+    TourLookupTx:
+      type: object
+      properties:
+        Tours:
+          type: array
+          items:
+            $ref: '#/components/schemas/TourLookupTour'
+          description: List of Tours
+          nullable: true
+      additionalProperties: false
+      description: Tour Look-Up
+    TourRankingTx:
+      type: object
+      properties:
+        Groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupTx'
+          description: Groups
+          nullable: true
+        TourId:
+          type: integer
+          description: Tour Id
+          format: int32
+        Tour:
+          type: string
+          description: Tour
+          nullable: true
+        Season:
+          type: integer
+          description: Season
+          format: int32
+      additionalProperties: false
+      description: Tour Ranking
+    TourSeason:
+      type: object
+      properties:
+        Season:
+          type: integer
+          description: Season
+          format: int32
+        IsCurrent:
+          type: boolean
+          description: Is Current
+        StartDate:
+          type: string
+          description: Start Date
+          format: date-time
+        EndDate:
+          type: string
+          description: End Date
+          format: date-time
+      additionalProperties: false
+      description: Tour Season
+    TourSeasonTx:
+      type: object
+      properties:
+        TourId:
+          type: integer
+          description: Tour Id
+          format: int32
+        Tour:
+          type: string
+          description: Tour
+          nullable: true
+        Seasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/TourSeason'
+          description: List of Seasons
+          nullable: true
+      additionalProperties: false
+      description: Tour Seasons
+    WithdrawalCategory:
+      type: object
+      properties:
+        Category:
+          type: string
+          description: Category
+          nullable: true
+        CategoryDescription:
+          type: string
+          description: Category Description
+          nullable: true
+        SortOrder:
+          type: integer
+          description: Sort Order
+          format: int32
+          nullable: true
+        Players:
+          type: array
+          items:
+            $ref: '#/components/schemas/WithdrawalPlayer'
+          description: Players
+          nullable: true
+      additionalProperties: false
+      description: Withdrawal Category
+    WithdrawalPlayer:
+      type: object
+      properties:
+        PlayerId:
+          type: integer
+          description: Player Id
+          format: int32
+        FirstName:
+          type: string
+          description: First Name
+          nullable: true
+        LastName:
+          type: string
+          description: Last Name
+          nullable: true
+        IsAmateur:
+          type: boolean
+          description: Is Amateur
+          nullable: true
+        CountryCode:
+          type: string
+          description: Country Code
+          nullable: true
+        CountryCodeISO3:
+          type: string
+          description: Country Code ISO-3
+          nullable: true
+        CategoryRank:
+          type: integer
+          description: Category Rank
+          format: int32
+          nullable: true
+        AboveCutOff:
+          type: boolean
+          description: Above CutOff
+        CutOffRank:
+          type: integer
+          description: CutOff Rank
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Withdrawal Player
+    WithdrawalsTx:
+      type: object
+      properties:
+        EventId:
+          type: integer
+          description: Event Id
+          format: int32
+        Categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/WithdrawalCategory'
+          description: Categories
+          nullable: true
+      additionalProperties: false
+      description: Withdrawals
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

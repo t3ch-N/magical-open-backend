@@ -1,0 +1,88 @@
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #fdfbf7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #1a1a1a;
+}
+
+.App-link {
+    color: #1a472a;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Custom animations */
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Leaderboard specific styles */
+.leaderboard-row {
+    transition: background-color 0.2s ease;
+}
+
+.leaderboard-row:hover {
+    background-color: rgba(26, 71, 42, 0.05);
+}
+
+.score-under {
+    color: #e31937;
+}
+
+.score-over {
+    color: #1a472a;
+}
+
+.score-even {
+    color: #6b7280;
+}
+
+/* Hero overlay */
+.hero-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(26, 71, 42, 0.7) 0%,
+        rgba(26, 71, 42, 0.9) 100%
+    );
+}
+
+/* Country flag styles */
+.country-flag {
+    width: 24px;
+    height: 16px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+}
